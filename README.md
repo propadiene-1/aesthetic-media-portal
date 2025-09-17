@@ -1,5 +1,4 @@
-# aesthetic media portal
-_a digital space for media that u definitely legally own._
+## _a digital space for media that u definitely legally own._
 
 ### Prerequisites:
 - Node.js 18+
