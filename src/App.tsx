@@ -67,7 +67,7 @@ export default function AestheticMediaPortal() {
   
   return (
     <div style={{ padding: 16 }}>
-      <h1> Media Portal</h1>
+      <h1> Media Portal THE UI WILL LOOK BETTER SOON</h1>
 
       <section>
         <h2>Books</h2>
@@ -98,8 +98,8 @@ export default function AestheticMediaPortal() {
                 else if (s.showURL) {
                   window.open(s.showURL, "_blank")
                }
-               {s.title}
               }}>
+              {s.title}
               </button>
             </li>
           ))}
