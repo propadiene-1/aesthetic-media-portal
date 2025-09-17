@@ -1,4 +1,4 @@
-## _Media Portal._
+## Media Portal.
 
 ### Prerequisites:
 - Node.js
