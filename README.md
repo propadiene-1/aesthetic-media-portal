@@ -1,15 +1,18 @@
-a digital space for media that u definitely legally own.
+# aesthetic media portal
+_a digital space for media that u definitely legally own._
 
-How to launch (you have to host it locally for now sorry)
+## How to use
+### Prerequisites:
+- Node.js 18+
 
-Prerequisites:
-- Node.js
-
-Clone the repo:
+### Run locally (you have to host it locally for now sorry)
+```bash
+#clone repo
 git clone https://github.com/propadiene-1/aesthetic-media-portal.git
+cd media-player
 
-Then install npm and start the server:
+# install npm and start the server
 npm install
 npm run dev
-
-Open the printed url.
+```
+Then open the printed url.
