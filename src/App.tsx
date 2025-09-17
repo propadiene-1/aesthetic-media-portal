@@ -21,7 +21,7 @@ type Book = {id: string; title: string; author: string; cover?: string; fileUrl?
 
 type Show = {id: string; title: string; poster?: string; src: string}
 
-type Album = {id: string; artist: string; title: string; cover?: string; trackUrl: string}
+type Album = {id: string; artist: string; title: string; src?: string; albumUrl?: string}
 
 export default function AestheticMediaPortal() {
   // --- Demo content (replace with your real metadata) ---
@@ -40,17 +40,22 @@ export default function AestheticMediaPortal() {
     ]);
 
   const [rawAlbums] = useState<Album[]>([
-      { id: 'a1', artist: 'City Pop Essentials', title: 'Shibuya Nights',
-        trackUrl: 'https://www.kozco.com/tech/piano2-CoolEdit.mp3',},
-      { id: 'a2', artist: 'Lo-fi Studio', title: 'Study Glow',
-        trackUrl: 'https://www.kozco.com/tech/piano2.wav',},
+      { id: 'a1', artist: 'Adrienne Lenker', title: 'Songs',
+        albumUrl: 'https://www.kozco.com/tech/piano2-CoolEdit.mp3',},
+      { id: 'a2', artist: 'Jane Remover', title: 'Frailty',
+        albumUrl: 'https://www.kozco.com/tech/piano2.wav',},
+      { id: 'a3', artist: 'yeule', title: 'softscars',
+        src: 'https://www.kozco.com/tech/piano2-CoolEdit.mp3',},
     ]);
   
   // useMemo wrappers — currently just pass data through
   const books = useMemo(() => rawBooks, [rawBooks])
   const shows = useMemo(() => rawShows, [rawShows])
-  const tracks = useMemo(() => rawAlbums, [rawAlbums])
+  const albums = useMemo(() => rawAlbums, [rawAlbums])
 
+  // update variables for show and track
+  const [activeShow, setActiveShow] = useState<Show | null>(null)
+  const [activeAlbum, setActiveAlbum] = useState<Album | null>(null)
   
   return (
     <div style={{ padding: 16 }}>
@@ -61,17 +66,27 @@ export default function AestheticMediaPortal() {
         <ul>
           {books.map(b => (
             <li key={b.id}>
-              {b.title} {b.author && <>— {b.author}</>}
+              {/*open url in new tab on click*/}
+              <button onClick = {() => window.open(b.fileUrl, "_blank")}>
+                {/*title + author button */}
+                {b.title} {b.author && <>— {b.author}</>}
+              </button>
             </li>
           ))}
         </ul>
-      </section>
-
+      </section> 
       <section>
         <h2>Shows</h2>
         <ul>
           {shows.map(s => (
-            <li key={s.id}>{s.title}</li>
+            <li key={s.id}>
+              {/*use state for show: active on click */}
+              <button onClick={() => setActiveShow(s)}>
+                {/*built-in player (if show)*/}
+                {activeShow && (<video src={activeShow.src} controls/>)}
+                {s.title}
+              </button>
+            </li>
           ))}
         </ul>
       </section>
@@ -79,9 +94,24 @@ export default function AestheticMediaPortal() {
       <section>
         <h2>Music</h2>
         <ul>
-          {tracks.map(t => (
-            <li key={t.id}>
-              {t.title} {t.artist && <>— {t.artist}</>}
+          {albums.map(a => (
+            <li key={a.id}>
+                <button onClick = {() => {
+                  {/*if file open local player */}
+                  if (a.src){
+                    {/*use state for track: active on click */}
+                    setActiveAlbum(a)
+                  } 
+                  else if (a.albumUrl){
+                    {/*if link open in new window */}
+                    window.open(a.albumUrl, "_blank")
+                  }
+                }}>
+                {/*built-in player (if file) */}
+                {activeAlbum && (<audio src={activeAlbum.src} controls/>)}
+                {/*title + artist button */}
+                {a.title} {a.artist && <>— {a.artist}</>}
+              </button>
             </li>
           ))}
         </ul>
