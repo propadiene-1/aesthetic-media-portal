@@ -122,14 +122,23 @@ export default function AestheticMediaPortal() {
                     window.open(a.albumURL, "_blank")
                   }
                 }}>
-                {/*built-in player (if file) */}
-                {activeAlbum?.id === a.id && (<audio src={activeAlbum.src} controls/>)}
                 {/*title + artist button */}
                 {a.title} {a.artist && <>— {a.artist}</>}
               </button>
             </li>
           ))}
         </ul>
+      
+      {/*album/track player*/}
+      {activeAlbum && (
+      <div className="now-playing">
+        <div className="track-info">
+          <strong>{activeAlbum.title}</strong>
+          {activeAlbum.artist && <span> — {activeAlbum.artist}</span>}
+        </div>
+        <audio className ="player" src={activeAlbum.src} controls autoPlay />
+      </div>
+      )}
       </section>
     </div>
   )

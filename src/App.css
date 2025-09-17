@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+h1 {
+  font-family: "Nunito", sans-serif;
 }
 
 .logo {
@@ -38,10 +44,66 @@
 }
 
 .read-the-docs {
-  color: #888;
+  color: white ;
 }
 
 ul {
   list-style-type: none;
   padding-left: 0;
+}
+
+.music-player {
+  display: block;          /* force it onto its own line */
+  margin-top: 0.5rem;      /* spacing below button */
+  width: 100%;             /* full width */
+  max-width: 400px;        /* limit so it doesn’t stretch too wide */
+  background: #111;        /* dark background behind controls */
+  border: 2px solid #f32a88;
+  border-radius: 8px;
+  padding: 0.25rem;
+}
+
+.now-playing {
+  position: fixed;        /* stick to bottom */
+  bottom: 10px;
+  width: 80%;            /* full width */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+
+  background: linear-gradient(to right, rgb(243, 42, 136, 0.7), rgb(245, 106, 170, 0.7));
+  color: white;
+  border: 1px solid #ee1279;
+  border-radius: 12px;
+  box-shadow: none;
+
+  font-family: system-ui, sans-serif;
+  z-index: 50;
+}
+
+.now-playing .track-info{
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.now-playing-bar .player {
+  flex: 2;           /* give player more space */
+  width: 100%;       /* stretch progress bar */
+  max-width: 1000px;  /* but cap it */
+}
+
+/* <weight>: Use a value from 200 to 1000
+ * <uniquifier>: Use a unique and descriptive class name.*/
+
+
+.nunito {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
