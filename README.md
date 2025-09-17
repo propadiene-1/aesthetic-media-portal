@@ -1,7 +1,7 @@
 ### Prerequisites:
 - Node.js
 
-### Run locally (you have to host it locally for now sorry)
+### Run locally (u have to host it locally for now sorry)
 
 Do this stuff and then open the printed url.
 ```bash
