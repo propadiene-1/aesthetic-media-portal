@@ -1,5 +1,3 @@
-## Media Portal.
-
 ### Prerequisites:
 - Node.js
 
