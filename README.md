@@ -1,7 +1,7 @@
 ## _a digital space for media that u definitely legally own._
 
 ### Prerequisites:
-- Node.js 18+
+- Node.js
 
 ### Run locally (you have to host it locally for now sorry)
 
