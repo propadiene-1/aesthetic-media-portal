@@ -1,4 +1,4 @@
-## _a digital space for media that u definitely legally own._
+## _Media Portal._
 
 ### Prerequisites:
 - Node.js
