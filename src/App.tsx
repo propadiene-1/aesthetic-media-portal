@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import './App.css'
 /*import { motion, AnimatePresence } from "framer-motion";*/
 /*also useRef, useEffect */
@@ -65,6 +65,15 @@ export default function AestheticMediaPortal() {
   const [activeShow, setActiveShow] = useState<Show | null>(null)
   const [activeAlbum, setActiveAlbum] = useState<Album | null>(null)
   
+  // might change later
+  const tvRef = useRef<HTMLDivElement | null>(null);
+  const toggleFullscreen = () => {
+    const el = tvRef.current;
+    if (!el) return;
+    if (document.fullscreenElement) document.exitFullscreen();
+    else el.requestFullscreen();
+  };
+
   return (
     <div style={{ padding: 16 }}>
       <h1> Media Portal THE UI WILL LOOK BETTER SOON</h1>
@@ -93,17 +102,34 @@ export default function AestheticMediaPortal() {
                 if (s.src) {
                   setActiveShow(s)
                   {/*built-in player (if show)*/}
-                  {activeShow?.id === s.id && (<video src={activeShow.src} controls/>)}
+                  {/*activeShow?.id === s.id && (<video src={activeShow.src} controls/>)*/}
                 }
                 else if (s.showURL) {
-                  window.open(s.showURL, "_blank")
-               }
-              }}>
+                  window.open(s.showURL, "_blank")}
+               }}
+               className={activeShow?.id === s.id ? 'active' : ''}
+               >
               {s.title}
               </button>
             </li>
           ))}
         </ul>
+      
+      <div className="tv-wrapper" ref={tvRef}>
+        {activeShow?.src && (
+          <video
+            key={activeShow.src}
+            src={activeShow.src}
+            autoPlay
+            muted
+            controls
+            playsInline
+          />
+        )}
+        <img className="frame" src="/tv3.png" alt="TV frame" />
+        <button className="fs" onClick={toggleFullscreen}>Fullscreen</button>
+      </div>
+
       </section>
 
       <section>
